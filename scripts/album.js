@@ -89,6 +89,7 @@ var albumIssac ={
  var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>'
  
  var currentlyPlayingSong = null;
+
  
 var findParentByClassName = function(element, targetClass) {
     if (element) {
