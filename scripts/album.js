@@ -10,12 +10,14 @@
       ;
  
     var $row = $(template);
+     
+    
     
     var clickHandler = function() {
 	var songNumber = parseInt($(this).attr('data-song-number'));
 
 	if (currentlyPlayingSongNumber !== null) {
-        var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
+        var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
 		currentlyPlayingCell.html(currentlyPlayingSongNumber);
 	}
 	if (currentlyPlayingSongNumber !== songNumber) {
@@ -33,15 +35,14 @@
      
      var onHover = function(event) {
           var songNumberParent = $(this).find('.song-item-number');
-          var songNumber = songNumberParent.parseInt($(this).attr('data-song-number'));
-
+          var songNumber = parseInt(songNumberParent.attr('data-song-number'));
          if (songNumber !== currentlyPlayingSongNumber) {
             songNumberParent.html(playButtonTemplate);
          }
      };
      var offHover = function(event) {
          var songNumberParent = $(this).find('.song-item-number');
-          var songNumber = songNumberParent.parseInt($(this).attr('data-song-number'));
+          var songNumber = parseInt(songNumberParent.attr('data-song-number'));
 
          if (songNumber !== currentlyPlayingSongNumber) {
             songNumberParent.html(songNumber);
@@ -97,8 +98,8 @@ var nextSong = function() {
 
     updatePlayerBarSong();
 
-    var $nextSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
-    var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
+    var $nextSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
+    var $lastSongNumberCell = getSongNumberCell(lastSongNumber);
 
     $nextSongNumberCell.html(pauseButtonTemplate);
     $lastSongNumberCell.html(lastSongNumber);
@@ -123,8 +124,8 @@ var previousSong = function() {
 
     $('.main-controls .play-pause').html(playerBarPauseButton);
 
-    var $previousSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
-    var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
+    var $previousSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
+    var $lastSongNumberCell = getSongNumberCell(lastSongNumber);
 
     $previousSongNumberCell.html(pauseButtonTemplate);
     $lastSongNumberCell.html(lastSongNumber);
