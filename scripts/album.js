@@ -1,6 +1,4 @@
-
-
- var createSongRow = function(songNumber, songName, songLength) {
+var createSongRow = function (songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
@@ -22,7 +20,6 @@ var clickHandler = function() {
 		currentlyPlayingCell.html(currentlyPlayingSongNumber);
 	}
 	if (currentlyPlayingSongNumber !== songNumber) {
-        
         setSong(songNumber);
 		$(this).html(pauseButtonTemplate);
         currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
@@ -30,15 +27,18 @@ var clickHandler = function() {
 	   } 
     else if (currentlyPlayingSongNumber === songNumber) {
 		if (currentSoundFile.isPaused()) {
-               $(this).html(pauseButtonTemplate);                $('.main-controls .play-pause').html(playerBarPauseButton);
+               $(this).html(pauseButtonTemplate);                 $('.main-controls .play-pause').html(playerBarPauseButton);
                currentSoundFile.play();
-           } else {
-               $(this).html(playButtonTemplate);                $('.main-controls .play-pause').html(playerBarPlayButton);               currentSoundFile.pause();              }
+           } 
+        else {
+               $(this).html(playButtonTemplate);                $('.main-controls .play-pause').html(playerBarPlayButton);               currentSoundFile.pause();  
+           }
+    }
 };
      
      var onHover = function(event) {
           var songNumberParent = $(this).find('.song-item-number');
-          var songNumber = songNumberParent.parseInt($(this).attr('data-song-number'));
+          var songNumber = parseInt(songNumberParent.attr('data-song-number'));
 
          if (songNumber !== currentlyPlayingSongNumber) {
             songNumberParent.html(playButtonTemplate);
@@ -46,8 +46,7 @@ var clickHandler = function() {
      };
      var offHover = function(event) {
          var songNumberParent = $(this).find('.song-item-number');
-          var songNumber = songNumberParent.parseInt($(this).attr('data-song-number'));
-
+          var songNumber = parseInt(songNumberParent.attr('data-song-number'));
          if (songNumber !== currentlyPlayingSongNumber) {
             songNumberParent.html(songNumber);
          }
