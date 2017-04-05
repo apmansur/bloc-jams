@@ -225,6 +225,7 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+	setTotalTimeInPlayerBar()//add data from fictures.js
 
 };
 
@@ -260,9 +261,18 @@ var getSongNumberCell = function(number){
 };
 
 var setCurrentTimeInPlayerBar= function(currentTime){
-  $(.currentTime).text(currentTime); 
+  $(.current-time).text(currentTime); 
 };
 
+var setTotalTimeInPlayerBar = function(totalTime){
+  $(.total-time).text(totalTime);
+};
+
+var filterTimeCode = function(timeInSeconds){
+	var seconds= pareseFloat();//get time from fixtures.js
+	var minutes=seconds/60;
+	//return format X:XX
+};
 
 
 
