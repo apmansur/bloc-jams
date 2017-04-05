@@ -100,6 +100,8 @@ var updateSeekBarWhileSongPlays = function() {
             
              var seekBarFillRatio = this.getTime() / this.getDuration();
              var $seekBar = $('.seek-control .seek-bar');
+             
+             setCurrentTimeInPlayerBar(seekBarFillRatio);
  
              updateSeekPercentage($seekBar, seekBarFillRatio);
          });
@@ -255,6 +257,10 @@ var setVolume = function(volume) {
 
 var getSongNumberCell = function(number){
     return $('.song-item-number[data-song-number="' + number + '"]');
+};
+
+var setCurrentTimeInPlayerBar= function(currentTime){
+  $(.currentTime).text(currentTime); 
 };
 
 
