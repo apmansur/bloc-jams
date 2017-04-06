@@ -259,8 +259,12 @@ var getSongNumberCell = function(number){
     return $('.song-item-number[data-song-number="' + number + '"]');
 };
 
-var setCurrentTimeInPlayerBar= function(currentTime){
-  $(.currentTime).text(currentTime); 
+var setCurrentTimeInPlayerBar = function(currentTime){
+  $(.current-time).text(currentTime); 
+};
+
+var setTotalTimeInPlayerBar = function(totalTime){
+    $(.total-time).text(totalTime);
 };
 
 
