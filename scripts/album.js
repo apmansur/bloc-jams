@@ -1,5 +1,3 @@
-
-
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -225,6 +223,7 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+	setTotalTimeInPlayerBar()//add data from fictures.js
 
 };
 
@@ -259,14 +258,21 @@ var getSongNumberCell = function(number){
     return $('.song-item-number[data-song-number="' + number + '"]');
 };
 
-var setCurrentTimeInPlayerBar = function(currentTime){
+var setCurrentTimeInPlayerBar= function(currentTime){
   $(.current-time).text(currentTime); 
 };
 
 var setTotalTimeInPlayerBar = function(totalTime){
-    $(.total-time).text(totalTime);
+  $(.total-time).text(totalTime);
 };
 
+var filterTimeCode = function(timeInSeconds){
+	var seconds= Math.floor(pareseFloat(timeInSeconds));//get time pass this.getDuration()
+	var minutes=Math.floor(seconds/60);
+    var remainder = (seconds-(minutes*60));
+    return minutes + ":" + remainder;
+	//return format X:XX
+};
 
 
 
@@ -292,4 +298,3 @@ var setTotalTimeInPlayerBar = function(totalTime){
      $nextButton.click(nextSong);
     
  });
-
