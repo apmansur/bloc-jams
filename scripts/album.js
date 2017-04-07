@@ -3,7 +3,7 @@
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
+      + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
       + '</tr>'
       ;
  
@@ -99,7 +99,7 @@ var updateSeekBarWhileSongPlays = function() {
              var seekBarFillRatio = this.getTime() / this.getDuration();
              var $seekBar = $('.seek-control .seek-bar');
              
-             setCurrentTimeInPlayerBar(seekBarFillRatio);
+             setCurrentTimeInPlayerBar(filterTimeCode(this.getTime()));
  
              updateSeekPercentage($seekBar, seekBarFillRatio);
          });
@@ -223,7 +223,7 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
-	setTotalTimeInPlayerBar()//add data from fictures.js
+	setTotalTimeInPlayerBar(this.getDuration());
 
 };
 
@@ -259,19 +259,24 @@ var getSongNumberCell = function(number){
 };
 
 var setCurrentTimeInPlayerBar= function(currentTime){
-  $(.current-time).text(currentTime); 
+  filterTimeCode($(".current-time").text(currentTime)); 
+    
 };
 
 var setTotalTimeInPlayerBar = function(totalTime){
-  $(.total-time).text(totalTime);
+  filterTimeCode($(".total-time").text(totalTime));
 };
 
 var filterTimeCode = function(timeInSeconds){
-	var seconds= Math.floor(pareseFloat(timeInSeconds));//get time pass this.getDuration()
+	var seconds= Math.floor(parseFloat(timeInSeconds));//get time pass this.getDuration()
 	var minutes=Math.floor(seconds/60);
     var remainder = (seconds-(minutes*60));
-    return minutes + ":" + remainder;
-	//return format X:XX
+    if (remainder <= 9){
+        return minutes + ":0" + remainder;
+    }
+    else{
+        return minutes + ":" + remainder;
+    }
 };
 
 
