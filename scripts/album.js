@@ -28,11 +28,13 @@
         $volumeFill.width(currentVolume + '%');
         $volumeThumb.css({left: currentVolume + '%'})
         
+        currentSoundFile.play();
+        updateSeekBarWhileSongPlays();
         updatePlayerBarSong();
 	   } 
         else if (currentlyPlayingSongNumber === songNumber) {
             if (currentSoundFile.isPaused()){
-                $(this).html(playButtonTemplate);
+                $(this).html(pauseButtonTemplate);
                 $('.main-controls .play-pause').html(playerBarPauseButton);
                 currentSoundFile.play();
             }
@@ -223,7 +225,7 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
-	setTotalTimeInPlayerBar(this.getDuration());
+	setTotalTimeInPlayerBar(currentSongFromAlbum.length);
 
 };
 
